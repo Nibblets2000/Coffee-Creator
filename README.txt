@@ -27,6 +27,10 @@ All of "With___.java" files in the package extend the CoffeeDecorator file and t
 implement the "Coffee.java" file. All of these files contain getter methods that return either
 a price, String representing the item, or List object representing the ingredient.
 
+- CoffeeOrder.java
+Provides many internal functions when getting or managing coffee order info such as the adding coffees to an order,
+retrieving the time the order was made, calculating the order's total, or printing the receipt.
+
 - "Inventory - _____.txt" files and OrderLog.txt
 The "Inventory - ____.txt" files are log files that keep track of the ingredients in stock
 as per each location. When running the program, if the number in stock is 0, the item will
