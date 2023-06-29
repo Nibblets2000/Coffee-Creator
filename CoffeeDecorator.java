@@ -1,5 +1,9 @@
+/**
+ * Program 'Coffee Creator'
+ * CS160L-1001-1002
+ * @author Noah Thao
+ */
 import java.util.List;
-import java.util.TreeMap;
 
 public abstract class CoffeeDecorator implements Coffee {
     private Coffee coffee;
