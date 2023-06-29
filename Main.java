@@ -1,6 +1,10 @@
+/**
+ * Program 'Coffee Creator'
+ * CS160L-1001-1002
+ * @author Noah Thao
+ */
+
 import java.io.*;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class Main {
@@ -86,7 +90,9 @@ public class Main {
                         System.out.println("Order log updated");
                         break;
                     }
-
+                    case "6" ->{
+                        System.out.println(inventory);
+                    }
                     default -> {
                         System.out.println("Incorrect input, please try again\n");
                     }
@@ -135,15 +141,13 @@ public class Main {
     }
 
 
-    //Method writes the current Inventory map into the inventory file
+    //Method writes the current Inventory map into the Inventory file
     private static void writeInventory(String filePath){
-        try (BufferedWriter bW = new BufferedWriter(new FileWriter(filePath, true))) {
+        try (BufferedWriter bW = new BufferedWriter(new FileWriter(filePath, false))) {
             for (String i : inventory.keySet()) {
-                bW.write(i + " = ");
-                bW.write(inventory.get(i));
-                bW.newLine();
-            }
-
+                    bW.write(i + " = " + inventory.get(i));
+                    bW.newLine();
+                }
             bW.flush();
             bW.close();
 
@@ -160,7 +164,7 @@ public class Main {
     }
 
     //Method writes all the orders that were created and added to the orders arraylist to the inventory file
-    private static void writeOrderLog(String filePath) throws IOException {
+    private static void writeOrderLog(String filePath) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
             for (CoffeeOrder order : orders) {
                 writer.write(order.printOrder());
@@ -174,7 +178,7 @@ public class Main {
     }
 
     //Method checks the inventory list to see if the given item is in stock and returns a boolean value
-    private static boolean isInInventory(String i) throws IOException {
+    private static boolean isInInventory(String i) {
         try {
             if (inventory.get(i) != 0) {
                 return true;
@@ -189,7 +193,7 @@ public class Main {
     //Displays menu for ordering and adding coffees
     private static CoffeeOrder buildOrder() {
         Scanner scan = new Scanner(System.in);
-        CoffeeOrder order = new CoffeeOrder();
+        CoffeeOrder order = new CoffeeOrder(inventoryFile);
         Coffee orD = null;
         boolean finished = false;
 
@@ -202,14 +206,14 @@ public class Main {
                             System.out.println("Select Coffee\n1. Black\n2. Espresso");
                             switch (scan.next()) {
                                 case "2":
-                                    orD = new Espresso();
+                                    orD = new Espresso(inventoryFile);
                                     inventory.put("Espresso", inventory.get("Espresso") - 1);
                                     orD = toppings(orD);
                                     order.addCoffee(orD);
                                     break;
 
                                 case "1":
-                                    orD = new BlackCoffee();
+                                    orD = new BlackCoffee(inventoryFile);
                                     inventory.put("Black Coffee", inventory.get("Black Coffee") - 1);
                                     orD = toppings(orD);
                                     order.addCoffee(orD);
@@ -250,7 +254,7 @@ public class Main {
                 switch (scan.next()) {
                     case "1":
                         if (isInInventory("Hot Water")) {
-                            impOrder = new WithHotWater(impOrder);
+                            impOrder = new WithHotWater(impOrder, inventoryFile);
                             inventory.put("Hot Water", inventory.get("Hot Water") - 1);
                             break;
                         } else {
@@ -260,7 +264,7 @@ public class Main {
 
                     case "2":
                         if (isInInventory("Milk")) {
-                            impOrder = new WithMilk(impOrder);
+                            impOrder = new WithMilk(impOrder, inventoryFile);
                             inventory.put("Milk", inventory.get("Milk") - 1);
                             break;
                         } else {
@@ -270,7 +274,7 @@ public class Main {
 
                     case "3":
                         if (isInInventory("Sugar")) {
-                            impOrder = new WithSugar(impOrder);
+                            impOrder = new WithSugar(impOrder, inventoryFile);
                             inventory.put("Sugar", inventory.get("Sugar") - 1);
                             break;
                         } else {
@@ -280,7 +284,7 @@ public class Main {
 
                     case "4":
                         if (isInInventory("Whipped Cream")) {
-                            impOrder = new WithWhippedCream(impOrder);
+                            impOrder = new WithWhippedCream(impOrder, inventoryFile);
                             inventory.put("Whipped Cream", inventory.get("Whipped Cream") - 1);
                             break;
                         } else {
@@ -295,7 +299,7 @@ public class Main {
                         switch (scan.next()) {
                             case "1":
                                 if (isInInventory("MOCHA Syrup")) {
-                                    impOrder = new WithFlavor(impOrder, WithFlavor.Syrup.MOCHA);
+                                    impOrder = new WithFlavor(impOrder, WithFlavor.Syrup.MOCHA, inventoryFile);
                                     inventory.put("MOCHA Syrup", inventory.get("MOCHA Syrup") - 1);
                                     break;
                                 } else {
@@ -304,7 +308,7 @@ public class Main {
                                 }
                             case "2":
                                 if (isInInventory("CARAMEL Syrup")) {
-                                    impOrder = new WithFlavor(impOrder, WithFlavor.Syrup.CARAMEL);
+                                    impOrder = new WithFlavor(impOrder, WithFlavor.Syrup.CARAMEL, inventoryFile);
                                     inventory.put("CARAMEL Syrup", inventory.get("CARAMEL Syrup") - 1);
                                     break;
                                 } else {
@@ -314,7 +318,7 @@ public class Main {
 
                             case "3":
                                 if (isInInventory("VANILLA Syrup")) {
-                                    impOrder = new WithFlavor(impOrder, WithFlavor.Syrup.VANILLA);
+                                    impOrder = new WithFlavor(impOrder, WithFlavor.Syrup.VANILLA, inventoryFile);
                                     inventory.put("VANILLA Syrup", inventory.get("VANILLA Syrup") - 1);
                                     break;
                                 } else {
