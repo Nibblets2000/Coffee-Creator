@@ -1,3 +1,8 @@
+/**
+ * Program 'Coffee Creator'
+ * CS160L-1001-1002
+ * @author Noah Thao
+ */
 import java.util.List;
 
 public interface Coffee {
