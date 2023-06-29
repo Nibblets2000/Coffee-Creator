@@ -1,0 +1,17 @@
+ORDER RECEIPT
+TimeStamp: 2023-06-28T21:28:09.988706500
+Item 1: A black coffee with hot water with milk with sugar with whipped cream with VANILLA - 2.30 
+TOTAL = 2.30 
+
+ORDER RECEIPT
+TimeStamp: 2023-06-28T21:34:46.980730100
+Item 1: An espresso with sugar with milk with hot water - 2.45 
+TOTAL = 2.45 
+
+ORDER RECEIPT
+TimeStamp: 2023-06-28T21:38:06.797192700
+Item 1: A black coffee - 1.00 
+Item 2: An espresso with sugar - 1.90 
+Item 3: An espresso with sugar with hot water with whipped cream with VANILLA - 2.50 
+TOTAL = 5.40 
+

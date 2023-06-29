@@ -1,0 +1,9 @@
+Black Coffee = 44
+CARAMEL Syrup = 13
+Espresso = 52
+Hot Water = 144
+Milk = 38
+MOCHA Syrup = 24
+Sugar = 50
+VANILLA Syrup = 19
+Whipped Cream = 30
