@@ -12,6 +12,7 @@ public class CoffeeOrder {
     private LocalDateTime orderDate;
     private String location;
 
+    //Constructor will check the location given
     public CoffeeOrder(String location) {
         coffees = new ArrayList<Coffee>();
         orderDate = LocalDateTime.now();
