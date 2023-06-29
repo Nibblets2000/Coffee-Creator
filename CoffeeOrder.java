@@ -1,15 +1,32 @@
+/**
+ * Program 'Coffee Creator'
+ * CS160L-1001-1002
+ * @author Noah Thao
+ */
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CoffeeOrder {
     private List<Coffee> coffees;
     private LocalDateTime orderDate;
+    private String location;
 
-    public CoffeeOrder() {
+    public CoffeeOrder(String location) {
         coffees = new ArrayList<Coffee>();
         orderDate = LocalDateTime.now();
+        if (location.contains("Irvine")){
+            this.location = "Irvine";
+        }
+        else if (location.contains("Anaheim")){
+            this.location = "Anaheim";
+        }
+        else if (location.contains("San Diego")){
+            this.location = "San Diego";
+        }
+        else{
+            this.location = "Long Beach";
+        }
     }
     public CoffeeOrder(LocalDateTime date){
         orderDate = date;
@@ -40,10 +57,10 @@ public class CoffeeOrder {
     public String printOrder() {
         StringBuilder order = new StringBuilder();
         order.append("ORDER RECEIPT\n");
-        order.append("TimeStamp: ").append(getOrderDate()).append("\n");
+        order.append("TimeStamp: ").append(getOrderDate()).append("\nLocation: ").append(location).append("\n");
+
         for (int i = 0; i < coffees.size(); i++) {
             Coffee coffee = coffees.get(i);
-            //order.append("Item " + (i + 1) + ": ");
             String form = "";
             form = String.format("Item %d: ", (i + 1));
             form += String.format("%s - %.2f %n", coffee.printCoffee(), coffee.getCost());
